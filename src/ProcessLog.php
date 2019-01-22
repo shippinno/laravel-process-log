@@ -73,7 +73,15 @@ class ProcessLog
         $pid = $this->pid;
         $time = $this->processingTime();
         $memory = $this->peekMemoryUsage();
-        $this->logger->info('Shutting down process.', compact('time', 'memory', 'pid'));
+        if ($this->app->runningInConsole()) {
+            $command = sprintf('php %s', implode(' ', (array)array_get($GLOBALS, 'argv')));
+            $params = compact('command', 'time', 'memory', 'pid');
+        } else {
+            $method = $_SERVER['REQUEST_METHOD'];
+            $uri = $_SERVER['REQUEST_URI'];
+            $params = compact('method', 'uri', 'time', 'memory', 'pid');
+        }
+        $this->logger->info('Shutting down process.', $params);
     }
 
     /**
