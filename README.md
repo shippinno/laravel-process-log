@@ -36,7 +36,7 @@ Run an Artisan command and it will be logged like below.
 
 ### For HTTP requests logging
 
-Same for your HTTP Kernel (usually `App\Http\Kernel`)..
+Same for your HTTP Kernel (usually `App\Http\Kernel`).
 
 ```php
 class Kernel extends HttpKernel 
