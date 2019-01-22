@@ -30,8 +30,8 @@ class Kernel extends ConsoleKernel
 Run an Artisan command and it will be logged like below.
 
 ```
-[2019-01-22 15:20:13] production.INFO: Starting up process. {"command":"php artisan some:command"} []
-[2019-01-22 15:20:21] production.INFO: Shutting down process. {"time":"8.258[s]","memory":"34[mb]"} []
+[2019-01-22 15:20:13] production.INFO: Starting up process. {"command":"php artisan some:command","pid":12345} []
+[2019-01-22 15:20:21] production.INFO: Shutting down process. {"time":"8.258[s]","memory":"34[mb]","pid":12345} []
 ```
 
 ### For HTTP requests logging
@@ -56,8 +56,8 @@ class Kernel extends HttpKernel
 Make an HTTP request and it will be logged like below.
 
 ```
-[2019-01-22 15:41:26] production.INFO: Starting up process. {"method":"GET","uri":"/foo/bar?baz"} []
-[2019-01-22 15:41:26] production.INFO: Shutting down process. {"time":"0.386[s]","memory":"2048[kb]"} []
+[2019-01-22 15:41:26] production.INFO: Starting up process. {"method":"GET","uri":"/foo/bar?baz","pid":12345} []
+[2019-01-22 15:41:26] production.INFO: Shutting down process. {"time":"0.386[s]","memory":"2048[kb]","pid":12345} []
 ```
 
 Logging is disabled if the app environment is set to `testing`.
