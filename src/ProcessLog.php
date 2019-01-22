@@ -17,6 +17,11 @@ class LifeCycleLogging
     private $app;
 
     /**
+     * @var int
+     */
+    private $pid;
+
+    /**
      * @var float|null
      */
     private $startedAt;
@@ -27,6 +32,7 @@ class LifeCycleLogging
     public function __construct(LoggerInterface $logger)
     {
         $this->setLogger($logger);
+        $this->pid = getmypid();
         $this->startedAt = microtime(true);
     }
 
@@ -47,13 +53,14 @@ class LifeCycleLogging
      */
     public function logStartingUp(): void
     {
+        $pid = $this->pid;
         if ($this->app->runningInConsole()) {
             $command = sprintf('php %s', implode(' ', (array)array_get($GLOBALS, 'argv')));
-            $params = compact('command');
+            $params = compact('command', 'pid');
         } else {
             $method = $_SERVER['REQUEST_METHOD'];
             $uri = $_SERVER['REQUEST_URI'];
-            $params = compact('method', 'uri');
+            $params = compact('method', 'uri', 'pid');
         }
         $this->logger->info('Starting up process.', $params);
     }
@@ -63,10 +70,10 @@ class LifeCycleLogging
      */
     public function logShuttingDown(): void
     {
+        $pid = $this->pid;
         $time = $this->processingTime();
         $memory = $this->peekMemoryUsage();
-
-        $this->logger->info('Shutting down process.', compact('time', 'memory'));
+        $this->logger->info('Shutting down process.', compact('time', 'memory', 'pid'));
     }
 
     /**
