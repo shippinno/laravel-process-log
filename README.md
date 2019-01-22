@@ -21,7 +21,7 @@ class Kernel extends ConsoleKernel
     {
         return array_merge(
             $this->bootstrappers,
-            [LifeCycleLogging::class]
+            [ProcessLog::class]
         );
     }
 }
@@ -47,7 +47,7 @@ class Kernel extends HttpKernel
     {
         return array_merge(
             $this->bootstrappers,
-            [LifeCycleLogging::class]
+            [ProcessLog::class]
         );
     }
 }
