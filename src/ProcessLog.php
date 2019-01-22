@@ -7,7 +7,7 @@ use Illuminate\Foundation\Application;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 
-class LifeCycleLogging
+class ProcessLog
 {
     use LoggerAwareTrait;
 
