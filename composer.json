@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "php": ">=7.1",
-        "laravel/framework": "5.4.*|5.5.*|5.6.*|5.7.*",
+        "laravel/framework": ">=5.4",
         "psr/log": "^1.1"
     },
     "autoload": {
