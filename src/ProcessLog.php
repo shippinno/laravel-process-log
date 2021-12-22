@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Shippinno\LaravelProcessLog;
 
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Arr;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 
@@ -55,7 +56,8 @@ class ProcessLog
     {
         $pid = $this->pid;
         if ($this->app->runningInConsole()) {
-            $command = sprintf('php %s', implode(' ', (array)array_get($GLOBALS, 'argv')));
+            $argv = Arr::get($GLOBALS, 'argv');
+            $command = sprintf('php %s', implode(' ', (array)$argv));
             $params = compact('command', 'pid');
         } else {
             $method = $_SERVER['REQUEST_METHOD'];
@@ -74,7 +76,8 @@ class ProcessLog
         $time = $this->processingTime();
         $memory = $this->peekMemoryUsage();
         if ($this->app->runningInConsole()) {
-            $command = sprintf('php %s', implode(' ', (array)array_get($GLOBALS, 'argv')));
+            $argv = Arr::get($GLOBALS, 'argv');
+            $command = sprintf('php %s', implode(' ', (array)$argv));
             $params = compact('command', 'time', 'memory', 'pid');
         } else {
             $method = $_SERVER['REQUEST_METHOD'];
