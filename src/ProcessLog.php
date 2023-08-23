@@ -15,17 +15,17 @@ class ProcessLog
     /**
      * @var Application
      */
-    private $app;
+    private Application $app;
 
     /**
      * @var int
      */
-    private $pid;
+    private int $pid;
 
     /**
      * @var float|null
      */
-    private $startedAt;
+    private ?float $startedAt;
 
     /**
      * @param LoggerInterface $logger
@@ -40,7 +40,7 @@ class ProcessLog
     /**
      * @param Application $app
      */
-    public function bootstrap(Application $app)
+    public function bootstrap(Application $app): void
     {
         $this->app = $app;
         if (!$app->environment('testing')) {
