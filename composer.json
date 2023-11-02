@@ -7,9 +7,18 @@
         "laravel/framework": "^10.10",
         "psr/log": "^3.0.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0|^8.0",
+        "mockery/mockery": "^1.5"
+    },
     "autoload": {
         "psr-4": {
             "Shippinno\\LaravelProcessLog\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Shippinno\\LaravelProcessLog\\": "tests/"
         }
     }
 }
